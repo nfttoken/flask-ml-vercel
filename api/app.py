@@ -3,8 +3,9 @@ import pandas as pd
 from flask import Flask, request, render_template
 from sklearn import preprocessing
 import pickle
+from collections.abc import Mapping
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates")
 model = pickle.load(open('model.pkl', 'rb'))
 cols=['age','workclass','education','marital-status','occupation','relationship','race','gender','capital-gain','capital-loss',
       'hours-per-week','native-country']
