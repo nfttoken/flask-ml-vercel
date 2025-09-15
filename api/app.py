@@ -1,9 +1,8 @@
-import numpy as np
-import pandas as pd
+
 from flask import Flask, request, render_template
-from sklearn import preprocessing
 import pickle
 from collections.abc import Mapping
+import numpy as np
 
 app = Flask(__name__, template_folder="../templates")
 model = pickle.load(open('model.pkl', 'rb'))
@@ -19,7 +18,7 @@ def predict():
     feature_list = request.form.to_dict()
     feature_list = list(feature_list.values())
     feature_list = list(map(int, feature_list))
-    final_features = np.array(feature_list).reshape(1, 12) 
+    final_features = np.array(feature_list).reshape(1, 14) 
     
     prediction = model.predict(final_features)
     output = int(prediction[0])
